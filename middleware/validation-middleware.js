@@ -22,6 +22,22 @@ const signup = async (req, res, next) => {
     });
 }
 
-module.exports = {
-    signup
-};
+const opensession = async (req, res, next) => {
+    const validationRule = {
+        "n_user": "required|integer",
+    }
+
+    await Validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+            res.status(412)
+                .send({
+                    success: false,
+                    message: 'Wrong number of users',
+                    data: err
+                });
+        } else {
+            next();
+        }
+    });
+}
+module.exports = { signup, opensession };
