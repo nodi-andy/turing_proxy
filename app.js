@@ -2,15 +2,19 @@
 'use strict';
 
 // [START gae_node_request_example]
-const express = require('express');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
+import { Configuration, OpenAIApi } from "openai";
+import express from 'express';
+import morgan from 'morgan';
+import bodyparserpkg from 'body-parser';
+import dotenv from 'dotenv';
+dotenv.config()
 
-const routes = require('./routes/index.js'); // import the routes
+const { urlencoded, json } = bodyparserpkg;
+import routes from './routes/index.js'; // import the routes
 
 const restapp = express();
-restapp.use(bodyParser.urlencoded({ extended: false }));
-restapp.use(bodyParser.json());
+restapp.use(urlencoded({ extended: false }));
+restapp.use(json());
 restapp.use(morgan('dev'));
 
 restapp.use('/', routes); //to use the routes
@@ -28,6 +32,11 @@ webapp.listen(PORT, () => {
   console.log('Press Ctrl+C to quit.');
 });*/
 
+const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+  
+  const openai = new OpenAIApi(configuration);
 
 // Start the server
 const PORT = parseInt(process.env.PORT) || 8080;
@@ -36,4 +45,4 @@ restapp.listen(PORT, () => {
   });
 // [END gae_node_request_example]
 
-module.exports = restapp;
+export default restapp;

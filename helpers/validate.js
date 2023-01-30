@@ -1,10 +1,9 @@
-const Validator = require('validatorjs');
-const Models = require("../models");
-
+import validatorjspkg from 'validatorjs';
+const { register, registerAsync } = validatorjspkg;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/;
 
 // Tighten password policy
-Validator.register('strict', value => passwordRegex.test(value),
+register('strict', value => passwordRegex.test(value),
 'password must contain at least one uppercase letter, one lowercase letter and one number'
 );
 
@@ -13,7 +12,7 @@ Validator.register('strict', value => passwordRegex.test(value),
  * e.g email: required|email|exists:User,email
  */
 
-Validator.registerAsync('exist', function(value,  attribute, req, passes) {
+registerAsync('exist', function(value,  attribute, req, passes) {
     if (!attribute) throw new Error('Specify Requirements i.e fieldName: exist:table,column');
 
     //split table and column
@@ -38,4 +37,4 @@ const validator = (body, rules, customMessages, callback) => {
     validation.fails(() => callback(validation.errors, false));
 };
 
-module.exports = validator;
+export default validator;

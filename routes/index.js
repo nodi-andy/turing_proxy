@@ -1,13 +1,11 @@
-const express = require('express'); //import express
-const validationMiddleware = require('../middleware/validation-middleware')
-const baseController = require("../controllers/base-controller")
+import { Router } from 'express'; //import express
+import { signup, opensession } from '../middleware/validation-middleware.js';
+import { index, signup as _signup, opensession as _opensession } from "../controllers/base-controller.js";
 
-const router  = express.Router(); 
+const router  = Router(); 
 
-const questionController = require('../controllers/base-controller'); 
+router.get("/", index);
+router.post("/signup", signup, _signup)
+router.post("/opensession", opensession, _opensession)
 
-router.get("/", baseController.index);
-router.post("/signup", validationMiddleware.signup, baseController.signup)
-router.post("/opensession", validationMiddleware.opensession, baseController.opensession)
-
-module.exports = router; // export to use in server.js
+export default router; // export to use in server.js

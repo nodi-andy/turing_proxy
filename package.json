@@ -5,6 +5,7 @@
   "private": true,
   "license": "Apache-2.0",
   "author": "ai.cilar",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/nodi-andy/turing_proxy"
@@ -17,8 +18,10 @@
     "test": "mocha --exit test/*.test.js"
   },
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
+    "openai": "^3.1.0",
     "validatorjs": "^3.22.1"
   },
   "devDependencies": {

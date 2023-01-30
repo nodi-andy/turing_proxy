@@ -1,6 +1,6 @@
-const Validator = require('../helpers/validate');
+import Validator from '../helpers/validate.js';
 
-const signup = async (req, res, next) => {
+export const signup = async (req, res, next) => {
     const validationRule = {
         "email": "required|string|email|exist:User,email",
         "username": "required|string|exist:User,username",
@@ -22,7 +22,7 @@ const signup = async (req, res, next) => {
     });
 }
 
-const opensession = async (req, res, next) => {
+export const opensession = async (req, res, next) => {
     const validationRule = {
         "n_user": "required|integer",
     }
@@ -40,4 +40,3 @@ const opensession = async (req, res, next) => {
         }
     });
 }
-module.exports = { signup, opensession };
