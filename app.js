@@ -2,12 +2,11 @@
 'use strict';
 
 // [START gae_node_request_example]
-import { Configuration, OpenAIApi } from "openai";
+
 import express from 'express';
 import morgan from 'morgan';
 import bodyparserpkg from 'body-parser';
-import dotenv from 'dotenv';
-dotenv.config()
+
 
 const { urlencoded, json } = bodyparserpkg;
 import routes from './routes/index.js'; // import the routes
@@ -32,11 +31,6 @@ webapp.listen(PORT, () => {
   console.log('Press Ctrl+C to quit.');
 });*/
 
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
-  
-  const openai = new OpenAIApi(configuration);
 
 // Start the server
 const PORT = parseInt(process.env.PORT) || 8080;
