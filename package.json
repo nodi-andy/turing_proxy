@@ -1,0 +1,28 @@
+{
+  "name": "turing_proxy",
+  "description": "Simple Hello World Node.js sample for Google App Engine Standard Environment.",
+  "version": "0.0.1",
+  "private": true,
+  "license": "Apache-2.0",
+  "author": "ai.cilar",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodi-andy/turing_proxy"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha --exit test/*.test.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "validatorjs": "^3.22.1"
+  },
+  "devDependencies": {
+    "mocha": "^10.0.0",
+    "supertest": "^6.0.0"
+  }
+}
