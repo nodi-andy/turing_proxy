@@ -1,4 +1,4 @@
-import Validator from '../helpers/validate.js';
+import { validator } from '../helpers/validate.js';
 
 export const signup = async (req, res, next) => {
     const validationRule = {
@@ -8,7 +8,7 @@ export const signup = async (req, res, next) => {
         "password": "required|string|min:6|confirmed|strict",
     }
 
-    await Validator(req.body, validationRule, {}, (err, status) => {
+    await validator(req.body, validationRule, {}, (err, status) => {
         if (!status) {
             res.status(412)
                 .send({
@@ -27,7 +27,7 @@ export const opensession = async (req, res, next) => {
         "n_user": "required|integer",
     }
 
-    await Validator(req.body, validationRule, {}, (err, status) => {
+    await validator(req.body, validationRule, {}, (err, status) => {
         if (!status) {
             res.status(412)
                 .send({
