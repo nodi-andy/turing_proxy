@@ -6,7 +6,7 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-const routes = require('./standard/routes/index.js'); // import the routes
+const routes = require('./routes/index.js'); // import the routes
 
 const restapp = express();
 restapp.use(bodyParser.urlencoded({ extended: false }));
