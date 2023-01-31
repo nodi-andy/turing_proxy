@@ -1,8 +1,9 @@
 "use strict";
 import { Configuration, OpenAIApi } from "openai";
 import * as crypto from "crypto";
-import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+import * as dotenv from 'dotenv'
 dotenv.config('..')
+
 console.log (process.env.OPENAI_API_KEY);
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
