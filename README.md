@@ -1,38 +1,28 @@
-# Quickstart for Node.js in the App Engine standard environment
+# Turingen API
 
-This is the sample application for the
-[Quickstart for Node.js in the App Engine standard environment][tutorial]
-tutorial found in the [Google App Engine Node.js standard environment][appengine]
-documentation.
+## Commands
 
-* [Setup](#setup)
-* [Running locally](#running-locally)
-* [Deploying to App Engine](#deploying-to-app-engine)
-* [Running the tests](#running-the-tests)
+        curl localhost:8080/                            
+                {"success":true,"message":"it_works"}
 
-## Setup
+        curl localhost:8080/get_echo?msg='plumbus'
+                {"success":true,"message":"plumbus"}
 
-Before you can run or deploy the sample, you need to do the following:
+        curl localhost:8080/get_question
+                {"success":true,"message":"What is the meaning of life?"}
 
-1.  Refer to the [appengine/README.md][readme] file for instructions on
-    running and deploying.
-1.  Install dependencies:
+        curl -H "Content-type: application/x-www-form-urlencoded" -d "msg=flubber" -X POST  localhost:8080/post_echo
+                {"success":true,"message":"flubber"}
 
-        npm install
+        curl -H "Content-type: application/x-www-form-urlencoded" -d "n_user=3"    -X POST  localhost:8080/open_session
+                {"success":true,"message":"87c948eed4fa356a30ce6403c248889f"}
+
+        curl -H "Content-type: application/x-www-form-urlencoded" -d "msg=How are plumbus made?" -d "xyz=qwe" -X POST  localhost:8080/chat
+                {"success":true,"message":"Plumbuses are made through a highly secretive process that involves mixing a variety of mysterious components together in a large vat. The exact ingredients are unknown, but it is rumored that the process includes a blend of grumbo, fleeb juice, and dinglebop."}
 
 ## Running locally
 
-    npm start
+    npm run start
 
 ## Deploying to App Engine
 
-    gcloud app deploy
-
-## Running the tests
-
-See [Contributing][contributing].
-
-[appengine]: https://cloud.google.com/appengine/docs/standard/nodejs
-[tutorial]: https://cloud.google.com/appengine/docs/standard/nodejs/quickstart
-[readme]: ../../README.md
-[contributing]: https://github.com/GoogleCloudPlatform/nodejs-docs-samples/blob/main/CONTRIBUTING.md
