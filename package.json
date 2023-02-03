@@ -1,7 +1,7 @@
 {
   "name": "turing_proxy",
-  "description": "Simple Hello World Node.js sample for Google App Engine Standard Environment.",
-  "version": "0.0.1",
+  "description": "Simple openai chat proxy.",
+  "version": "0.0.3",
   "private": true,
   "license": "Apache-2.0",
   "author": "ai.cilar",

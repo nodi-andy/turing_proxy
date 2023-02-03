@@ -1,0 +1,9 @@
+steps:
+  # Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/openai-376011/turingen-proxy', '.']
+  # Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/openai-376011/turingen-proxy']
+images:
+  - gcr.io/openai-376011/turingen-proxy
