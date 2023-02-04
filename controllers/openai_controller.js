@@ -28,16 +28,22 @@ setupOpenAI(process.env.OPENAI_API_KEY)
 
 
 export async function complete (req, res) {
-    console.log("complete started" + '\r\n' + JSON.stringify(config))
+    if (res == null) return;
+
+    console.log("complete started" + '\r\n' + JSON.stringify(config) + ' ' + JSON.stringify(res))
     const response = await openai.createCompletion(config);
 //    const agentText = 'ABC';
     const agentText = response.data.choices[0]?.text?.trim() || res.status(200).json(reply);
 
 
-    return res.status(200).json({
-        success: true,
-        message: agentText
-    });
+    if (res.status) {
+        return res.status(200).json({
+            success: true,
+            message: agentText
+        });
+    } else {
+        return res({success: true, message: agentText});
+    }
 };
 
 export async function set_config (req, res) {
@@ -96,13 +102,18 @@ export async function chat (req, res) {
     
     config.prompt = chatPrompt
     const response = await openai.createCompletion(config);
-    const agentText = response.data.choices[0]?.text?.trim() || res.status(200).json(reply);
+    var agentText = response.data.choices[0]?.text?.trim() || res.status(200).json(reply);
+    if (agentText.startsWith("AI: ")) agentText = agentText.slice(4)
     chatPrompt += agentText + '\r\n';
     chatHistory.push({user: 'AI', txt: agentText})
     console.log("CHAT : " + chatPrompt );
 
-    return res.status(200).json({
-        success: true,
-        message: agentText
-    });
+    if (res.status) {
+        return res.status(200).json({
+            success: true,
+            message: agentText
+        });
+    } else {
+        return res({success: true, message: agentText});
+    }
 };
