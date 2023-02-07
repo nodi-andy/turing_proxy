@@ -13,6 +13,7 @@ let config = {
 
 let chatHistory = []
 let openai = null;
+var aiName = String.fromCharCode(Math.floor(Math.random()*26) + 64)
 
 function setupOpenAI(key) {
     console.log (process.env.OPENAI_API_KEY);
@@ -30,7 +31,7 @@ setupOpenAI(process.env.OPENAI_API_KEY)
 export async function complete (req, res) {
     if (res == null) return;
 
-    console.log("complete started" + '\r\n' + JSON.stringify(config) + ' ' + JSON.stringify(res))
+    //console.log("complete started" + '\r\n' + JSON.stringify(config) + ' ' + JSON.stringify(res))
     const response = await openai.createCompletion(config);
 //    const agentText = 'ABC';
     const agentText = response.data.choices[0]?.text?.trim() || res.status(200).json(reply);
@@ -105,7 +106,7 @@ export async function chat (req, res) {
     var agentText = response.data.choices[0]?.text?.trim() || res.status(200).json(reply);
     if (agentText.startsWith("AI: ")) agentText = agentText.slice(4)
     chatPrompt += agentText + '\r\n';
-    chatHistory.push({user: 'AI', txt: agentText})
+    chatHistory.push({user: aiName, txt: agentText})
     console.log("CHAT : " + chatPrompt );
 
     if (res.status) {
